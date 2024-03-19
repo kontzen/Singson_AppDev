@@ -1,0 +1,24 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>custom-page-with-id</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">custom-page-with-id</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <strong>This is ID Page: {{id}}</strong><br /><br />
+    <div><strong>Hello!</strong><br /></div>
+    <ion-button (click)="goBacktoCustomPage()"
+      >Go Back to Custom Page</ion-button
+    >
+    <!--method to go back on the custom page-->
+    <ion-button (click)="goBacktoHomePage()">Go Back to Home Page</ion-button>
+    <!--method to go back on the home page-->
+  </div>
+</ion-content>
