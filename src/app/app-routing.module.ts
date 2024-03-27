@@ -7,8 +7,6 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () =>
       import('./home/home.module').then((m) => m.HomePageModule),
-    // canActivate: [LoginAuthenticationService],
-    
   },
   {
     path: '',
@@ -23,10 +21,18 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'calculator',
-    loadChildren: () => import('./calculator/calculator.module').then( m => m.CalculatorPageModule)
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./dashboard/dashboard.module').then((m) => m.DashboardPageModule),
+    canActivate: [LoginAuthenticationService],
   },
-
+  {
+    path: 'calculator',
+    loadChildren: () =>
+      import('./calculator/calculator.module').then(
+        (m) => m.CalculatorPageModule
+      ),
+  },
 ];
 
 @NgModule({

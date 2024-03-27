@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
 import { LoginAuthenticationService } from '../login-authentication.service';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-login-page',
@@ -12,11 +13,15 @@ export class LoginPagePage implements OnInit {
   user: string = '';
   pass: string = '';
 
+  userNameCreds = ['Ken', 'admin', 'user'];
+  passwordCreds = ['2002', '123', '1345'];
+
   constructor(
     private router: Router,
     private alertController: AlertController,
     private authenticate: LoginAuthenticationService,
-    private toast: ToastController
+    private toast: ToastController,
+    private data: DataService
   ) {}
 
   ngOnInit() {
@@ -24,21 +29,34 @@ export class LoginPagePage implements OnInit {
   }
 
   async login() {
-    if (this.pass == '12345') {
-      const alert = await this.alertController.create({
-        header: 'Success',
-        subHeader: 'Welcome!',
-        message: 'Welcome, ' + this.user,
-        buttons: ['OK'],
-      });
-      await alert.present();
-      setTimeout(() => {
-        this.router.navigate(['home']);
+    for (let start = 0; start < this.userNameCreds.length; start++) {
+      if (
+        this.user == this.userNameCreds[start] &&
+        this.pass == this.passwordCreds[start]
+      ) {
         this.authenticate.authenticate = true;
-      }, 1000); // Considerable delay
-    } else {
-      this.loginFailed();
+        localStorage.setItem('username', this.user);
+      }
     }
+    this.authenticate
+      .validateLoad()
+      .then(() => {
+        this.loginSuccess();
+        this.router.navigate(['dashboard/home']);
+      })
+      .catch(() => {
+        this.loginFailed();
+      });
+  }
+
+  async loginSuccess() {
+    const alert = await this.alertController.create({
+      header: 'Success',
+      subHeader: 'Welcome!',
+      message: 'Welcome, ' + this.user,
+      buttons: ['OK'],
+    });
+    await alert.present();
   }
 
   async loginFailed() {

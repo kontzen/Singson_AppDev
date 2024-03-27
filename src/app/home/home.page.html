@@ -1,41 +1,29 @@
-<ion-header [translucent]="true">
+<ion-header collapse="condense">
   <ion-toolbar>
-    <ion-title> Blank </ion-title>
+    <ion-title size="large">home</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">dashboard</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-tabs>
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="home">
-        <ion-icon name="home"></ion-icon>
-        Dashboard
-      </ion-tab-button>
-      <ion-tab-button tab="calculator">
-        <ion-icon name="calculator"></ion-icon>
-        Calculator
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs>
-
-  <div class="log-out">
-    <ion-button (click)="logout()" shape="round">Log Out</ion-button>
+  <div id="container">
+    <h1 style="color: rgb(71, 194, 231)">Blue Archive Students</h1>
+    <h3>Name & birthday</h3>
+    <ion-list [inset]="true">
+      <ion-item *ngFor="let number of blueArchive">
+        <ion-label>{{number.name}}</ion-label>
+        <ion-label>{{number.birthday}}</ion-label>
+      </ion-item>
+    </ion-list>
   </div>
-
-  <ion-card>
-  <ion-card-header>
-    <ion-card-title>Card Title</ion-card-title>
-    <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-  </ion-card-header>
-
-  <ion-card-content>
-    Here's a small text description for the card content. Nothing more, nothing less.
-  </ion-card-content>
-</ion-card>
+  <div>
+    <ion-card>
+      <ion-button
+        class="log-out"
+        (click)="logout()"
+        color="danger"
+        shape="round"
+        >Log Out</ion-button
+      >
+    </ion-card>
+  </div>
 </ion-content>

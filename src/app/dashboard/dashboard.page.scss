@@ -1,12 +1,11 @@
 #container {
-  display: flex;
-  flex-direction: column;
   text-align: center;
-  margin: 20px;
+
+  position: absolute;
   left: 0;
   right: 0;
   top: 50%;
-  transform: translateY(5%);
+  transform: translateY(-50%);
 }
 
 #container strong {
@@ -31,18 +30,4 @@
   display: flex;
   justify-content: center;
   margin: 20px;
-}
-
-ion-label {
-  display: flex;
-  justify-content: space-around;
-  text-align: center;
-}
-
-ion-card {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: translateY(20%);
-  margin-bottom: 30px;
 }

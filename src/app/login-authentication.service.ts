@@ -11,4 +11,16 @@ export class LoginAuthenticationService {
   canActivate() {
     return this.authenticate;
   }
+
+  validateLoad() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (this.authenticate) {
+          resolve('');
+        } else {
+          reject();
+        }
+      }, 1000);
+    });
+  }
 }
